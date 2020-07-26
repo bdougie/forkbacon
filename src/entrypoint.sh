@@ -190,6 +190,8 @@ function update_fork()
     print_info "Skipping git push!"
   else
     print_info "Pushing back changes!"
+    echo "## Ignore workflow files (we may not touch them)"
+    git update-index --assume-unchanged .github/workflows/*
 
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
