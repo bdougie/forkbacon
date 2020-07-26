@@ -185,9 +185,9 @@ function update_fork()
 
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
-      git push origin --force-with-lease
+      git push origin master --force-with-lease
     else
-      git push origin 
+      git push origin master
     fi
   fi
 }
