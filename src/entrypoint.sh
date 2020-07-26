@@ -10,7 +10,7 @@ readonly NC=$'\e[0m'
 echo "## Initializing git repo..."
 git init
 echo "### Adding git remote..."
-git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/notbdougie/open-sauced.git
+git remote set-url origin https://x-access-token:$TOKEN_TOKEN@github.com/notbdougie/open-sauced.git
 echo "### Getting branch"
 BRANCH=${checkout_branch}
 echo "### git fetch $BRANCH ..."
