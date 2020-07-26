@@ -179,11 +179,15 @@ function update_fork()
     print_info "Skipping git push!"
   else
     print_info "Pushing back changes!"
+    
+    REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
+    git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/$REPO_FULLNAME.git
+
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
-      git push --force-with-lease
+      git push origin --force-with-lease
     else
-      git push
+      git push origin 
     fi
   fi
 }
