@@ -7,14 +7,12 @@ readonly RED=$'\e[31m'
 readonly GRAY=$'\e[38;5;244m'
 readonly NC=$'\e[0m'
 
-REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
-
 echo "## Initializing git repo..."
 git init
 echo "### Adding git remote..."
-git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/$REPO_FULLNAME.git
+git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/open-sauced/open-sauced.git
 echo "### Getting branch"
-BRANCH=${GITHUB_REF#*refs/heads/}
+BRANCH=${checkout_branch}
 echo "### git fetch $BRANCH ..."
 git fetch origin $BRANCH
 echo "### Branch: $BRANCH (ref: $GITHUB_REF )"
