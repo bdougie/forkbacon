@@ -153,6 +153,7 @@ function update_fork()
 
   print_info "Fetching upstream"
   git fetch upstream
+  git update-index --assume-unchanged .github/workflows/*
   if [[ ${merge_method} == "rebase" ]]; then
     git rebase "upstream/${upstream_branch}"
     CONFLICTS=$(git ls-files -u | wc -l)
@@ -191,7 +192,6 @@ function update_fork()
   else
     print_info "Pushing back changes!"
     echo "## Ignore workflow files (we may not touch them)"
-    git update-index --assume-unchanged .github/workflows/*
 
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
