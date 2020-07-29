@@ -1,7 +1,7 @@
-FROM alpine:3.11.3
+FROM alpine:latest
 
 # hadolint ignore=DL3018
-RUN apk add --no-cache bash git openssh-client
+RUN apk add --no-cache jq bash git openssh-client
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

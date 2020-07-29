@@ -7,6 +7,17 @@ readonly RED=$'\e[31m'
 readonly GRAY=$'\e[38;5;244m'
 readonly NC=$'\e[0m'
 
+echo "## Initializing git repo..."
+git init
+echo "### Adding git remote..."
+git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/notbdougie/open-sauced.git
+echo "### Getting branch"
+BRANCH=${checkout_branch}
+echo "### git fetch $BRANCH ..."
+git fetch origin $BRANCH
+echo "### Branch: $BRANCH (ref: $GITHUB_REF )"
+git checkout $BRANCH
+
 function print_info()
 {
   printf "▶ %s \n" "$@"
@@ -179,6 +190,7 @@ function update_fork()
     print_info "Skipping git push!"
   else
     print_info "Pushing back changes!"
+
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
       git push --force-with-lease
