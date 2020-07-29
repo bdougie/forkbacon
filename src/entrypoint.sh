@@ -190,13 +190,12 @@ function update_fork()
     print_info "Skipping git push!"
   else
     print_info "Pushing back changes!"
-    echo "## Ignore workflow files (we may not touch them)"
 
     if [[ ${merge_method} == "rebase" ]]; then
       #  Because it checks the remote branch for changes
-      git push origin master --force-with-lease
+      git push --force-with-lease
     else
-      git push origin master
+      git push
     fi
   fi
 }
